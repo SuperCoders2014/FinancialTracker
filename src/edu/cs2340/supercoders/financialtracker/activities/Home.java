@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 import edu.cs2340.supercoders.financialtracker.R;
 
 public class Home extends Activity {
@@ -38,25 +37,32 @@ public class Home extends Activity {
 		 * by putting our array into an array adaptor, and then setting that
 		 * adaptor to our list view.
 		 * 
-		 * TO WRITE::: ONCLICK LISTENER EXPLANATION
+		 * After we set up the adaptor, we want to set up on OnItemClickListener
+		 * so that we can click on our accounts. For now I have it going to a
+		 * new transaction, but that can be easily changed to make it go to an
+		 * account page or whatever else we want once clicked on.
 		 */
 		ListView list = (ListView) findViewById(R.id.home_accountList);
 		String[] accountList = Welcome.getData().getCurrent().accountArray();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 				getApplicationContext(), R.layout.account_list, accountList);
 		list.setAdapter(adapter);
-		
-		list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View viewClicked, int position,
-					long id) {
-				Welcome.getData().getCurrent().setCurrAccount(Welcome.getData().getCurrent().getAccounts().get(position));
-				Intent transactionIntent = new Intent(
-						getApplicationContext(), NewTransaction.class);
+			public void onItemClick(AdapterView<?> parent, View viewClicked,
+					int position, long id) {
+				Welcome.getData()
+						.getCurrent()
+						.setCurrAccount(
+								Welcome.getData().getCurrent().getAccounts()
+										.get(position));
+				Intent transactionIntent = new Intent(getApplicationContext(),
+						NewTransaction.class);
 				startActivity(transactionIntent);
 			}
-			
+
 		});
 	}
 

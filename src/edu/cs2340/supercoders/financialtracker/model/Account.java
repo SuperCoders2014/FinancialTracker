@@ -37,6 +37,11 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	/**
+	 * Either adds to the balance or subtracts from the balance depending on what type of transaction it is. Also adds the transaction to the transaction history.
+	 * 
+	 * @param trans
+	 */
 	public void addTrans(Transaction trans){
 		transactionHistory.add(trans);
 		transCount++;

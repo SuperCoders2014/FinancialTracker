@@ -103,12 +103,17 @@ public class Welcome extends Activity {
 	public static LoginData getData() {
 		return data;
 	}
-	
-	public static User getCurrUser(){
+
+	/*
+	 * I added getCurrUser and getCurrAccount here to make it a bit easier to
+	 * access these things from other places, rather than having to go through
+	 * the data and shit every time we want to acces one of them.
+	 */
+	public static User getCurrUser() {
 		return data.getCurrent();
 	}
-	
-	public static Account getCurrAccount(){
+
+	public static Account getCurrAccount() {
 		return data.getCurrent().getCurrAccount();
 	}
 

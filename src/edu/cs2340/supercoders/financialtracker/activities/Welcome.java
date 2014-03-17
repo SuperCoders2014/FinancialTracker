@@ -1,8 +1,18 @@
 package edu.cs2340.supercoders.financialtracker.activities;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +21,8 @@ import edu.cs2340.supercoders.financialtracker.R;
 import edu.cs2340.supercoders.financialtracker.model.Account;
 import edu.cs2340.supercoders.financialtracker.model.LoginData;
 import edu.cs2340.supercoders.financialtracker.model.User;
+
+import com.google.gson.Gson;
 
 /**
  * The Class Welcome.
@@ -44,6 +56,7 @@ public class Welcome extends Activity {
 		setContentView(R.layout.activity_welcome);
 
 		data = new LoginData();
+		load();
 
 		/*
 		 * Here we are creating our button and setting it up to load the Login
@@ -92,6 +105,87 @@ public class Welcome extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.welcome, menu);
 		return true;
+	}
+
+	/**
+	 * Saving the application using a text file in JSON format. Notice I have
+	 * the application saving any time we've changed anything using the
+	 * onPause() function. So any time register, new transaction, or create
+	 * account is paused or closed it will save our data.
+	 */
+	public static void save() {
+		PrintWriter writer = null;
+		try {
+			File file = new File(Environment.getExternalStorageDirectory()
+					+ "/data.json");
+			writer = new PrintWriter(new FileWriter(file));
+
+			// Googles JSON library
+			Gson gSon = new Gson();
+			writer.println(gSon.toJson(data));
+			writer.close();
+
+			Log.e("Welcome", "Saved data successfully");
+		} catch (IOException e) {
+			e.printStackTrace();
+			Log.e("Welcome", "IO problem writing the json");
+		} finally {
+			if (writer != null)
+				writer.close();
+		}
+	}
+
+	/**
+	 * Load the application using a JSON text file. Notice the file is loaded
+	 * whenever welcome is created.
+	 */
+	public void load() {
+		String json = null;
+		try {
+			json = getJsonFromFile();
+		} catch (IOException e) {
+			Log.e("Welcome", "Error on closing file in Json load");
+		}
+
+		Gson gSon = new Gson();
+		data = gSon.fromJson(json, LoginData.class);
+		if (data == null) {
+			data = new LoginData();
+			Log.e("Welcome", "json failed and return null");
+		}
+	}
+
+	/**
+	 * Helper method to get the file as a string so it can be converted
+	 * 
+	 * @return the string rep of the entire file
+	 * @throws IOException
+	 */
+	private String getJsonFromFile() throws IOException {
+		File file = new File(Environment.getExternalStorageDirectory()
+				+ "/data.json");
+		StringBuffer buff = new StringBuffer();
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String s = reader.readLine();
+			Log.d("Welcome", "Got First Line: " + s);
+			while (s != null) {
+				buff.append(s);
+				s = reader.readLine();
+				Log.d("Welcome", "Got Line: " + s);
+			}
+		} catch (FileNotFoundException e) {
+			Log.e("Welcome", "Json file not found");
+		} catch (IOException e) {
+			Log.e("Welcome", "IO error when reading json file");
+		} finally {
+			if (reader != null)
+				reader.close();
+		}
+
+		Log.d("Welcome", "got json: " + buff.toString());
+		return buff.toString();
 	}
 
 	/**

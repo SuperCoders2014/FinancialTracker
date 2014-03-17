@@ -74,5 +74,10 @@ public class Register extends Activity {
 		getMenuInflater().inflate(R.menu.register, menu);
 		return true;
 	}
+	
+	public void onPause(){
+		Welcome.save();
+		super.onPause();
+	}
 
 }

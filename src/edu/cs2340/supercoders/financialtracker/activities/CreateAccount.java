@@ -53,5 +53,10 @@ public class CreateAccount extends Activity {
 		getMenuInflater().inflate(R.menu.create_account, menu);
 		return true;
 	}
+	
+	public void onPause(){
+		Welcome.save();
+		super.onPause();
+	}
 
 }

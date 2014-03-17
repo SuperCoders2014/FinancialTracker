@@ -55,5 +55,10 @@ public class NewTransaction extends Activity {
 		getMenuInflater().inflate(R.menu.new_transaction, menu);
 		return true;
 	}
+	
+	public void onPause(){
+		Welcome.save();
+		super.onPause();
+	}
 
 }

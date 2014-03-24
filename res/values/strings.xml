@@ -3,7 +3,6 @@
 
     <string name="app_name">Financial Tracker</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
@@ -25,5 +24,20 @@
     <string name="transType">Transaction Type</string>
     <string name="transAmount">Transaction Amount</string>
     <string name="createTrans">Create Transaction</string>
+    <string name="title_activity_reports">Reports</string>
+    <string name="generate_report">generate report</string>
+    <string name="Reportz">Reports</string>
+    <string name="spending_report">Spending Report</string>
+    <string name="title_activity_spending_report">SpendingReport</string>
+    <string name="SCR">Spending Category Report for:</string>
+    <string name="SR_ending_date">Pick a ending date:</string>
+    <string name="next">Next</string>
+    <string name="SR_starting_date">Pick a starting date:</string>
+    <string name="title_activity_actual_spending_report">ActualSpendingReport</string>
+    <string name="title_activity_starting_time">StartingTime</string>
+    <string name="title_activity_ending_time">EndingTime</string>
+    <string name="enterDate">MM/DD/YYYY</string>
+    <string name="transDate">Transaction Date</string>
+    <string name="S_return">Return Home</string>
 
 </resources>

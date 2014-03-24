@@ -1,5 +1,6 @@
 package edu.cs2340.supercoders.financialtracker.activities;
 
+
 import edu.cs2340.supercoders.financialtracker.R;
 import edu.cs2340.supercoders.financialtracker.model.Transaction;
 import android.os.Bundle;
@@ -32,13 +33,19 @@ public class NewTransaction extends Activity {
 				String name = ((EditText) findViewById(R.id.newTransaction_transactionName)).getText().toString();
 				String type = ((EditText) findViewById(R.id.newTransaction_transactionType))
 						.getText().toString();
+				String date = ((EditText) findViewById(R.id.newTransaction_transactionDate))
+						.getText().toString();
 				try{
+					int day = Integer.parseInt(date.substring(0, 2));
+					int month = Integer.parseInt(date.substring(3, 5));
+					int year = Integer.parseInt(date.substring(6, 10));
+					
 					double amount = Double.parseDouble(((EditText) findViewById(R.id.newTransaction_transactionAmount))
 						.getText().toString());
-					Transaction nTrans = new Transaction(name, amount, type);
+					Transaction nTrans = new Transaction(name, amount, type, date);
 					Welcome.getCurrAccount().addTrans(nTrans);
 				} catch (Exception e){
-					Toast error = Toast.makeText(getApplicationContext(), "Please enter a valid amount (a number)", Toast.LENGTH_SHORT);
+					Toast error = Toast.makeText(getApplicationContext(), "Please enter a valid amount (a number)/valid date.", Toast.LENGTH_SHORT);
 					error.show();
 				}
 

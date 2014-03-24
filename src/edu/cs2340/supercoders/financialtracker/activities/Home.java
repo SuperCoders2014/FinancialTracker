@@ -29,7 +29,16 @@ public class Home extends Activity {
 				startActivity(createAccountIntent);
 			}
 		});
-
+		// Setting up report generator Button to start Report intent
+				Button reports = (Button) findViewById(R.id.home_genReport);
+				reports.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Intent createReportIntent = new Intent(
+								getApplicationContext(), Reports.class);
+						startActivity(createReportIntent);
+					}
+				});
 		/*
 		 * This little area of code is a bit weird. Basically, we have a list
 		 * view that starts out empty. What we're doing here is getting an array

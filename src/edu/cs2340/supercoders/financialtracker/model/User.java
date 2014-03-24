@@ -156,5 +156,8 @@ public class User {
 	public void setCurrAccount(Account acc){
 		currAccount = acc;
 	}
+	public String toString() {
+		return firstName + " " + lastName;
+	}
 
 }

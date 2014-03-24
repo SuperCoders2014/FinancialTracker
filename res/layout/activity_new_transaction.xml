@@ -9,49 +9,62 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NewTransaction" >
 
-    <EditText
-        android:id="@+id/newTransaction_transactionType"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/newTransaction_transactionName"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:text="@string/transType"
-        android:textColor="#66FF00" />
+        android:layout_marginTop="38dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/newTransaction_transactionName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/transName"
+                android:textColor="#66FF00" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/newTransaction_transactionType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/transType"
+                android:textColor="#66FF00" />
+
+            <EditText
+                android:id="@+id/newTransaction_transactionDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" 
+                android:text="@string/transDate"
+                android:textColor="#66FF00"/>
+
+            <EditText
+                android:id="@+id/newTransaction_transactionAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:text="@string/transAmount"
+                android:textColor="#66FF00" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/newTransaction_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newTransaction_transactionAmount"
+        android:layout_below="@+id/scrollView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:text="@string/createTrans" />
-
-    <EditText
-        android:id="@+id/newTransaction_transactionName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-		android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:text="@string/transName"
-        android:textColor="#66FF00" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/newTransaction_transactionAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/newTransaction_transactionType"
-        android:layout_below="@+id/newTransaction_transactionType"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:text="@string/transAmount"
-        android:textColor="#66FF00" />
 
 </RelativeLayout>

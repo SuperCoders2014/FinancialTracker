@@ -25,7 +25,7 @@ public class LoginData {
 	public LoginData() {
 		registry = new HashMap<String, User>();
 
-		User admin = new User("admin", "pass123", "Kevin", "Smith");
+		User admin = new User("a", "p", "Kevin", "Smith");
 		registry.put(admin.getUserName(), admin);
 
 		Account acc = new Account("Admin", "Savings", 00.00);

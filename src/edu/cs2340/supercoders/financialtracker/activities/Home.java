@@ -34,8 +34,10 @@ public class Home extends Activity {
 				reports.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						
 						Intent createReportIntent = new Intent(
 								getApplicationContext(), Reports.class);
+						Reports.setTab(0);
 						startActivity(createReportIntent);
 					}
 				});
@@ -68,7 +70,7 @@ public class Home extends Activity {
 								Welcome.getData().getCurrent().getAccounts()
 										.get(position));
 				Intent transactionIntent = new Intent(getApplicationContext(),
-						NewTransaction.class);
+						Transactions.class);
 				startActivity(transactionIntent);
 			}
 

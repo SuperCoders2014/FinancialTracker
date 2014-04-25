@@ -64,6 +64,52 @@
             android:name="edu.cs2340.supercoders.financialtracker.activities.EndingTime"
             android:label="@string/title_activity_ending_time" >
         </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.LoginHelp"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login_help"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.LoginHelp"
+            android:label="@string/title_activity_login_help" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.ForgottenPassword"
+            android:label="@string/title_activity_forgotten_password" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.ForgottenUserName"
+            android:label="@string/title_activity_forgotten_user_name" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.Transactions"
+            android:label="@string/title_activity_transactions" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.IncomeSource"
+            android:label="@string/title_activity_income_source" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.CashFlow"
+            android:label="@string/title_activity_cash_flow" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.AccountListing"
+            android:label="@string/title_activity_account_listing" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.ChooseAccount"
+            android:label="@string/title_activity_choose_account" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.activities.TransactionHistory"
+            android:label="@string/title_activity_transaction_history" >
+        </activity>
+        <activity
+            android:name="edu.cs2340.supercoders.financialtracker.model.Music"
+            android:label="@string/title_activity_music" >
+        </activity>
     </application>
 
 </manifest>

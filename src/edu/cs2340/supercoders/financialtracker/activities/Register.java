@@ -35,23 +35,62 @@ public class Register extends Activity {
 		 * method to take us back to Welcome
 		 */
 		Button register = (Button) findViewById(R.id.register_register_button);
+		
 		register.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				String userName = ((EditText) findViewById(R.id.register_userName))
+				String userName = ((EditText) findViewById(R.id.register_username))
 						.getText().toString();
 				String password = ((EditText) findViewById(R.id.register_password))
 						.getText().toString();
+				String email = ((EditText) findViewById(R.id.register_email)).getText().toString();
 				String firstName = ((EditText) findViewById(R.id.register_firstName))
 						.getText().toString();
 				String lastName = ((EditText) findViewById(R.id.register_lastName))
 						.getText().toString();
 				boolean available = Welcome.getData().checkAvailability(
 						userName);
+				boolean hasNumber = true;
+				char[] passwordChar = password.toCharArray();
+				for (char items: passwordChar) {
+					if (Character.isDigit(items)) {
+						hasNumber = false;
+					}
+				}
 
-				if (available) {
-					User newUser = new User(userName, password, firstName,
+				if (userName.length() < 5) {
+					Toast incLogin = Toast.makeText(getApplicationContext(),
+							"Username must be at least 5 characters long",
+							Toast.LENGTH_SHORT);
+					incLogin.show();
+				} else if (password.length() < 9) {
+					Toast incLogin = Toast.makeText(getApplicationContext(),
+							"Password must be at least 8 characters and 1 number",
+							Toast.LENGTH_SHORT);
+					incLogin.show();
+				} else if (hasNumber) {
+					Toast incLogin = Toast.makeText(getApplicationContext(),
+							"Password must contain at least one number",
+							Toast.LENGTH_SHORT);
+					incLogin.show();
+				} else if (!email.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+					Toast incLogin = Toast.makeText(getApplicationContext(),
+							"Please enter a valid email e.g. email@domain.com",
+							Toast.LENGTH_SHORT);
+					incLogin.show();
+				} else if (firstName.length() < 1) {
+					Toast incLogin = Toast.makeText(getApplicationContext(),
+							"Please enter a first name",
+							Toast.LENGTH_SHORT);
+					incLogin.show();
+				} else if (lastName.length() < 1) {
+					Toast incLogin = Toast.makeText(getApplicationContext(),
+							"Please enter a last name",
+							Toast.LENGTH_SHORT);
+					incLogin.show();
+				} else if (available) {
+					User newUser = new User(userName, password, email, firstName,
 							lastName);
 					Welcome.getData().addNewUser(newUser);
 					Toast success = Toast.makeText(getApplicationContext(),

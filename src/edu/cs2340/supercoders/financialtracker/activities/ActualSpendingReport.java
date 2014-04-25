@@ -1,16 +1,11 @@
 package edu.cs2340.supercoders.financialtracker.activities;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
-import edu.cs2340.supercoders.financialtracker.R;
-import edu.cs2340.supercoders.financialtracker.model.Account;
-import edu.cs2340.supercoders.financialtracker.model.Transaction;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,15 +13,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+import edu.cs2340.supercoders.financialtracker.R;
+import edu.cs2340.supercoders.financialtracker.model.Account;
+import edu.cs2340.supercoders.financialtracker.model.Transaction;
 
 public class ActualSpendingReport extends Activity {
 	private HashMap<String, Double> hm = new HashMap<String, Double>();
-
+	private static String start;
+	private static String end;
+	public static void setStart(String s) {
+		start = s;
+	}
+	public static void setEnd(String s) {
+		end = s;
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_actual_spending_report);
+		
+		
+		
+		
 		//starts the empty values for the hashmap categories
 		hm.put("food", 0.00);
 		hm.put("rent", 0.00);
@@ -41,7 +49,7 @@ public class ActualSpendingReport extends Activity {
 		theName.setText(text);
 		
 		TextView theDates = (TextView) findViewById(R.id.SR_Dates);
-		CharSequence date = StartingTime.getStart() + " - " + EndingTime.getEnd();
+		CharSequence date = start + " - " + end;
 		theDates.setText(date);
 		
 		ListView list = (ListView) findViewById(R.id.SR_categoryList);
@@ -84,7 +92,7 @@ public class ActualSpendingReport extends Activity {
     		for (int j = 0; j < transSize; j++) {
     			String time = trans.get(j).getTime();
     			if (inBetween(time)) {
-    				String name = trans.get(j).getName();
+    				String name = trans.get(j).getSource();
     				double amount = trans.get(j).getAmount();
     				String type = trans.get(j).getType();
     				if (type.equals("withdrawal")) {
@@ -105,8 +113,8 @@ public class ActualSpendingReport extends Activity {
     	}
     }
     private boolean inBetween(String time) {
-    	String a = StartingTime.getStart();
-    	String b = EndingTime.getEnd();
+    	String a = start;
+    	String b = end;
     	int startDay = Integer.parseInt(a.substring(0, 2));
 		int startMonth = Integer.parseInt(a.substring(3, 5));
 		int startYear = Integer.parseInt(a.substring(6, 10));

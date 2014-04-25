@@ -16,6 +16,8 @@ public class LoginData {
 
 	/** The current. */
 	private User current;
+	private HashMap<String, String> userNameRecovery;
+	private HashMap<String, String> passwordRecovery;
 
 	/**
 	 * Not only am I setting up registry here, but I'm also setting up a default
@@ -24,9 +26,13 @@ public class LoginData {
 	 */
 	public LoginData() {
 		registry = new HashMap<String, User>();
+		userNameRecovery = new HashMap<String, String>();
+		passwordRecovery = new HashMap<String, String>();
 
-		User admin = new User("a", "p", "Kevin", "Smith");
+		User admin = new User("a", "p", "a@email.com", "Kevin", "Smith");
 		registry.put(admin.getUserName(), admin);
+		userNameRecovery.put(admin.getEmail(), admin.getUserName());
+		passwordRecovery.put(admin.getUserName(), admin.getEmail());
 
 		Account acc = new Account("Admin", "Savings", 00.00);
 		admin.addAccount(acc);
@@ -94,7 +100,22 @@ public class LoginData {
 		else
 			return false;
 	}
-
+	public String recoverUserName(String email) {
+		if (userNameRecovery.containsKey(email)) {
+			String userName = userNameRecovery.get(email);
+			return userName;
+		} else {
+			return null;
+		}
+	}
+	public String recoverPassword(String userName) {
+		if (passwordRecovery.containsKey(userName)) {
+			String email = passwordRecovery.get(userName);
+			return email;
+		} else {
+			return null;
+		}
+	}
 	/**
 	 * Adds the new user.
 	 * 

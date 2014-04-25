@@ -10,8 +10,10 @@ import java.io.PrintWriter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore.Audio.Media;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -44,6 +46,7 @@ public class Welcome extends Activity {
 	 * implementation specifics.
 	 */
 	private static LoginData data;
+	private MediaPlayer song;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,10 @@ public class Welcome extends Activity {
 		 */
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-
+		song = MediaPlayer.create(Welcome.this, R.raw.financejingle);
+		song.start();
+		
+        
 		data = new LoginData();
 		load();
 

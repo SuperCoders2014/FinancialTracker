@@ -10,12 +10,13 @@ public class Transaction {
 	private double amount;
 
 	private String type;
+	private String source;
 	
 	private String userEnteredTime;
 	
 	private Timestamp createdTime;
 
-	public Transaction(String name, double amount, String type, String ts) {
+	public Transaction(String name, String source, double amount, String type, String ts) {
 		this.name = name;
 		this.amount = amount;
 		this.type = type;
@@ -26,6 +27,9 @@ public class Transaction {
 
 	public String getName() {
 		return name;
+	}
+	public String getSource() {
+		return source;
 	}
 
 	public String getType() {

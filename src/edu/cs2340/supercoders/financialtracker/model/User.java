@@ -15,6 +15,8 @@ public class User {
 	
 	/** The pass. */
 	private String pass;
+	/** The email. */
+	private String email;
 	
 	/** The first name. */
 	private String firstName;
@@ -34,10 +36,12 @@ public class User {
 	 * @param pass the pass
 	 * @param firstName the first name
 	 * @param lastName the last name
+	 * @param lastName2 
 	 */
-	public User(String userName, String pass, String firstName, String lastName) {
+	public User(String userName, String pass, String email, String firstName, String lastName) {
 		this.userName = userName;
 		this.pass = pass;
+		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		accountList = new LinkedList<Account>();
@@ -70,7 +74,7 @@ public class User {
 		String[] list = new String[accountList.size()];
 
 		for (int i = 0; i < accountList.size(); i++) {
-			list[i] = accountList.get(i).getAccountType() + ": "
+			list[i] = accountList.get(i).getName() + ": "
 					+ "$" + accountList.get(i).getBalance();
 		}
 
@@ -85,7 +89,12 @@ public class User {
 	public String getUserName() {
 		return userName;
 	}
-
+   /**Gets the email.
+    * @return the email
+    */
+	public String getEmail() {
+		return email;
+	}
 	/**
 	 * Sets the user name.
 	 *

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import edu.cs2340.supercoders.financialtracker.R;
 
@@ -27,8 +28,28 @@ public class Login extends Activity {
 		 * is started. Else the user gets a popup saying "incorrect login"
 		 */
 		Button login = (Button) findViewById(R.id.login_login_button);
+		TextView needHelp = (TextView) findViewById(R.id.login_helpLink);
+		
+		boolean changedIt = ForgottenUserName.getChangedIt();
+        if (changedIt) {
+        	TextView et = (TextView)findViewById(R.id.user_name);
+        	String email = ForgottenUserName.getUserName();
+        	et.setText(email);
+        	ForgottenUserName.setChangedIt();
+        } else {
+        	TextView et = (TextView)findViewById(R.id.user_name);
+        	et.setText("");
+        }
+		
+		needHelp.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent loginHelp = new Intent(getApplicationContext(), LoginHelp.class);
+				startActivity(loginHelp);
+			}
+		});
+		
 		login.setOnClickListener(new OnClickListener() {
-
+      
 			@Override
 			public void onClick(View v) {
 				String userName = ((EditText) findViewById(R.id.user_name))
@@ -37,7 +58,6 @@ public class Login extends Activity {
 						.getText().toString();
 				boolean result = Welcome.getData()
 						.checkUser(userName, password);
-
 				if (result) {
 					Welcome.getData().setCurrent(
 							Welcome.getData().getUser(userName));
